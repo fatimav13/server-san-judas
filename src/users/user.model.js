@@ -1,68 +1,68 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
     name: {
-        type: String, 
+        type: String,
         required: [true, 'El nombre es obligatorio'],
-        maxLength: [25, 'El nombre no puede tener mas de 25 caracteres'],
-        trim: true 
-    }, 
+        maxLength: [25, 'El nombre no puede tener más de 25 caracteres'],
+        trim: true
+    },
     surname: {
-     type: String, 
+        type: String,
         required: [true, 'El apellido es obligatorio'],
-        maxLength: [25, 'El apellido no puede tener mas de 25 caracteres'],
-        trim: true    
-    }, 
+        maxLength: [25, 'El apellido no puede tener más de 25 caracteres'],
+        trim: true
+    },
     username: {
-        type: String, 
-        required: [true, 'El username es obligatorio'], 
-        unique: true, 
-        trim: true 
-    }, 
+        type: String,
+        required: [true, 'El username es obligartorio'],
+        unique: true,
+        trim: true
+    },
     email: {
-        type: String, 
-        required: [true, 'El email es obligatorio'],
-        unique: true, 
+        type: String,
+        required: [true, 'El email esobligatorio'],
+        unique: true,
         trim: true,
-        lowercase: true, 
-        match: [/^\S+@\S+\.\S+$/, 'El email no es valido'], 
+        lowercase: true,
+        match: [/^\S+@\S+\.\S+$/, 'El email no es válido']
     },
     password: {
         type: String,
-        required: [true, 'La contraseña es obligaria'], 
-        minLength: [8, 'La contraseña debe tener al menos 8 caracteres'],
+        required: [true, 'La contraseña es obligatoria'],
+        minLengt: [true, 'La contraseña debe contener mínimo 8 caracteres']
     },
-    profilePicture:{
-        type: String, 
+    profilePicture: {
+        type: String,
         default: ''
     },
     phone: {
-        type: String, 
-        minLength: [8, 'El teléfono debe de tener al menos 8 caracteres'], 
-        maxLength: [8, 'El teléfono no debe de tener mas de 8 caracteres'], 
-        trim: true 
-    }, 
-role: {
-    type: String, 
-    enum: ['ADMIN_ROLE', 'USER_ROLE'],
-    default: 'USER_ROLE'
+        type: String,
+        minLengt: [8, 'El tenlefono debe tener al menos 8 caracteres'],
+        maxLength: [8, 'El teléfono no debe tener más de 8 caracteres'],
+        trim: true
+    },
+    rol: {
+        type: String,
+        enum: ['ADMOIN_ ROLE', 'USER_ROLE'],
+        default: 'USER_ROLE'
     },
     status: {
-        type: Boolean, 
+        type: Boolean,
         default: true
     },
-    posts: [{
+    posts:[{
         type: Schema.Types.ObjectId,
         ref: 'Post'
     }]
-}, {
-    timestamps: true, 
+},{
+    timestamps: true,
     versionKey: false
 })
 
-userSchema.methods.toJSON = function() {
-    const { password, _id, ...user} = this.toObject(); 
-    return { uid: _id, ...user}
+userSchema.methods.toJOSN = function() {
+    const { password, id, ...user} = this.toObjet();
+    return { uid: id, ...user}
 }
 
-export default model('user', userSchema)
+export default model('User', userSchema)

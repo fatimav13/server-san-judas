@@ -1,23 +1,24 @@
-import { Schema, model } from 'mongoose'
+import { Schema, SchemaType, model } from "mongoose";
 
 const commentSchema = new Schema({
-    text: {
-         type: String, 
-        required: true,
-        trim: true
-    }, 
+    text:{
+        type: String,
+        require: true,
+        trim: true,
+    },
     post:{
-         type: String, 
+        type: Schema.Types.ObjectId,
         ref: 'Post',
-        required: true
-    }, 
+        require: true,
+    },
     author:{
-         type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
-    }, 
+        require: true
+    }
 },{
-    timestmps: true,
+    timestamps: true,
     versionKey: false
 })
+
 export default model('Comment', commentSchema)
