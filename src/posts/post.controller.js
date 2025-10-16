@@ -6,8 +6,8 @@ export const createPost = async (req, res) =>{
     try{
         const { title, content } = req.body
         const authorId = req.uid
-
-        const post = new Post.create ({
+        console.log(authorId)
+        const post = await Post.create ({
             title,
             content,
             author: authorId
@@ -39,7 +39,7 @@ export const getAllPosts = async (req, res) => {
         const skip = (page -1) * limit
 
         const post = await Post.find()
-        .populate('author', 'name surname username profile´Picture')
+        .populate('author', 'name surname username profile Picture')
         .populate({
             path: 'author',
             populate:{

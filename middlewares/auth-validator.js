@@ -7,7 +7,7 @@ import { deleteFileOnError } from './delete-file-on-error.js'
 export const registerValidator = [
     check('name', 'El nombre es obligatorio').not().isEmpty(),
     check('surname', 'El apellido es obligatorio').not().isEmpty(),
-    check('usename', 'El nombre de usuario es obligatorio').not().isEmpty(),
+    check('username', 'El nombre de usuario es obligatorio').not().isEmpty(),
     check('email', 'No es un email valido').isEmail(),
     check('email').custom(emailExists),
     check('password', 'La contraseña debe de tener al menos 8 caracteres').isLength({
